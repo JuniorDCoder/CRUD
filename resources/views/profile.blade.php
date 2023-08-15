@@ -1,5 +1,5 @@
 @extends('layouts.master')
 
 @section('content')
-    <h1>You are not authenticated</h1>
+    <h1>Profile</h1>
 @endsection
