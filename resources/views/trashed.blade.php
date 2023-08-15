@@ -47,7 +47,7 @@
                                 <div class="d-flex">
                                     <a style="text-decoration: none" class="btn-sm btn-success me-2" href="{{route('posts.restore', $post->id)}}">Restore</a>
                                     {{-- <a style="text-decoration: none" class="btn-sm btn-danger" href="">Delete</a> --}}
-                                    <form action="" method="POST">
+                                    <form action="{{route('posts.force_delete', $post->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn-sm btn-danger">Delete</button>
