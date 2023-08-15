@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
+    public function __construct(){
+        $this->middleware('authCheck2')->only('create');
+    }
     /**
      * Display a listing of the resource.
      */
