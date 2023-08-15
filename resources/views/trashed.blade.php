@@ -9,7 +9,8 @@
                         Trashed Posts
                     </div>
                     <div class="col-md-6 d-flex justify-content-end">
-                        <a class="btn btn-success mx-1" href="">Back</a>
+                        <a class="btn btn-success mx-1" href="{{route('posts.create')}}">Create</a>
+                        <a class="btn btn-warning mx-1" href="">Trashed</a>
                     </div>
                 </div>
 
@@ -30,21 +31,32 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <th>
-                            <img src="https://picsum.photos/200" alt="" width="80">
-                        </th>
-                        <th>Lorem Ipsum</th>
-                        <th>Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum</th>
-                        <th>News</th>
-                        <th>2-5-23</th>
 
-                        <td>
-                            <a style="text-decoration: none" class="btn-sm btn-primary" href="">Edit</a>
-                            <a style="text-decoration: none" class="btn-sm btn-danger" href="">Delete</a>
-                        </td>
-                      </tr>
+                        @foreach ($posts as $post)
+                        <tr>
+                            <th scope="row">{{$post->id}}</th>
+                            <th>
+                                <img src="{{asset($post->image)}}" alt="" width="80">
+                            </th>
+                            <th>{{$post->title}}</th>
+                            <th>{{$post->description}}</th>
+                            <th>{{$post->category->name}}</th>
+                            <th>{{date('d-m-Y', strtotime($post->created_at))}}</th>
+
+                            <td>
+                                <div class="d-flex">
+                                    <a style="text-decoration: none" class="btn-sm btn-success me-2" href="{{route('posts.restore', $post->id)}}">Restore</a>
+                                    {{-- <a style="text-decoration: none" class="btn-sm btn-danger" href="">Delete</a> --}}
+                                    <form action="" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+
                     </tbody>
                   </table>
             </div>
