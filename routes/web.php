@@ -33,7 +33,8 @@ Route::group(["middleware" => "authCheck"], function(){
 Route::get('/posts/trash', [PostController::class, 'trashed'])->name('posts.trashed');
 Route::get('posts/{id}/restore', [PostController::class, 'restore'])->name('posts.restore');
 Route::delete('/posts/{id}/force-delete', [PostController::class, 'forceDelete'])->name('posts.force_delete');
-Route::resource('posts', PostController::class);
+
+Route::resource('posts', PostController::class)->middleware('authCheck2');
 
 Route::get('unavailable', function(){
     return view('unavailable');
