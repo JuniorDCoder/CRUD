@@ -26,7 +26,7 @@ class PostController extends Controller
         });
          */
 
-        $posts = Cache::rememberForever('post', function () {
+        $posts = Cache::rememberForever('posts', function () {
             return Post::with('category')->paginate(3);
         });
 
