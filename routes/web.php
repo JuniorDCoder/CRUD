@@ -40,4 +40,6 @@ Route::get('unavailable', function(){
     return view('unavailable');
 })->name('unavailable');
 
-
+Route::get('contact', function(){
+    return view('contact');
+});
