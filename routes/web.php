@@ -1,6 +1,8 @@
 <?php
 
+use App\Mail\OrderShipped;
 use App\Models\Post;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
@@ -44,4 +46,14 @@ Route::get('unavailable', function(){
 Route::get('contact', function(){
     $posts = Post::all();
     return view('contact', compact('posts'));
+});
+
+Route::get('send-mail', function(){
+    /**
+     * Mail::raw('Hello From Elife Saver', function($message){
+        $message->to('juniorngu84@gmail.com')->subject('Test Mail');
+        });
+     */
+    Mail::send(new OrderShipped);
+    dd('success');
 });
