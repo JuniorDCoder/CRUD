@@ -19,6 +19,9 @@ class PostController extends Controller
      */
     public function index()
     {
+        $posts = Cache::remember('posts-page-'.request('page', 1), 3*60, function () {
+            return Post::with('category')->paginate(3);
+        });
 
         /**
          * $posts = Cache::remember('posts', 60*60, function(){
@@ -26,9 +29,11 @@ class PostController extends Controller
         });
          */
 
-        $posts = Cache::rememberForever('posts', function () {
+       /**
+        * $posts = Cache::rememberForever('posts', function () {
             return Post::with('category')->paginate(3);
         });
+        */
 
         return view('index', compact('posts'));
     }
