@@ -1,5 +1,7 @@
 <?php
 
+use App\Jobs\SendMail;
+use App\Mail\PostPublished;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -49,5 +51,10 @@ Route::group(['middleware' => 'auth'], function(){
     // return auth()->user();
     });
 
+});
+
+Route::get('send-mail', function(){
+    SendMail::dispatch();
+    dd("Mail has been sent!");
 });
 
