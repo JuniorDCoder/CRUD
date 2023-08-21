@@ -2,9 +2,11 @@
 
 namespace App\Listeners;
 
+use App\Mail\WelcomeEmail;
 use App\Events\UserRegistered;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class SendWelcomeEmail
 {
@@ -22,5 +24,6 @@ class SendWelcomeEmail
     public function handle(UserRegistered $event): void
     {
         //
+        Mail::send(new WelcomeEmail($event->email));
     }
 }

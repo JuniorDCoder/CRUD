@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\UserRegistered;
 use App\Jobs\SendMail;
 use App\Mail\PostPublished;
 use Illuminate\Support\Facades\Auth;
@@ -58,3 +59,10 @@ Route::get('send-mail', function(){
     dd("Mail has been sent!");
 });
 
+Route::get('user-registered', function(){
+
+    $email = 'juniorngu84@gmail.com';
+    event(new UserRegistered($email));
+
+    dd("Mail Sent");
+});
