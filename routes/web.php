@@ -66,3 +66,7 @@ Route::get('user-registered', function(){
 
     dd("Mail Sent");
 });
+
+Route::get('greeting', function(){
+    return view('greeting');
+});
