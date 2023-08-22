@@ -67,6 +67,9 @@ Route::get('user-registered', function(){
     dd("Mail Sent");
 });
 
-Route::get('greeting', function(){
+//en, fr
+Route::get('greeting/{locale}', function($locale){
+
+    App::setLocale($locale);
     return view('greeting');
-});
+})->name('greeting');
